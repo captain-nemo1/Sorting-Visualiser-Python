@@ -1,3 +1,4 @@
+#Decreasing Order
 import random
 import pygame
 import sys
@@ -11,9 +12,9 @@ space=5 #space between bars
 sorting=False
 font = pygame.font.SysFont('Times New Roman', 30)
 blue = (0, 0, 255)
-
+black=(0,0,0)
 screen=pygame.display.set_mode((800,600))
-screen.fill((255,255,255))
+screen.fill((black))
 
 #To make the graph
 def drawbar(x, height,color):
@@ -68,8 +69,8 @@ def bubblesort(arr):
             time.sleep(.2)
             if arr[j]>arr[j+1]:
                  arr[j], arr[j+1]=arr[j+1], arr[j]
-            screen.fill((255,255,255))     
-            text = font.render("Sorting ", True, (0, 0, 0))
+            screen.fill((black))     
+            text = font.render("Sorting ", True, (blue))
             screen.blit(text, (300, 100))
         
                  
@@ -91,7 +92,7 @@ while True:
     if sorting:
         break
     for event in pygame.event.get():
-        if(event==pygame.QUIT):
+        if(event.type==pygame.QUIT):
             pygame.quit()
             sys.exit()
 

@@ -1,4 +1,3 @@
-#Ascending Order
 import random
 import pygame
 import sys
@@ -54,10 +53,10 @@ def button2(msg,x,y,w,h):
     screen.blit(text, (x + 10, y + 10))    
 
 
-def selectionsort(arr):
+def insertionsort(arr):
     n=len(arr)
     for i in range(n):
-        for j in range(i,n):
+        for j in range(0,i+1):
             for k in range(num_bar): #to color those that are being checked for comparision
                 x=(k*bar_width)+(k*space)+(600-(num_bar *bar_width+num_bar*space))
                 height=bars[k]
@@ -88,7 +87,7 @@ for i in range(num_bar):
 
 #To keep working till user clicks Selection Button or Exits
 while True:
-    button('Selection', 300, 100, 130, 50)
+    button('Insertion', 300, 100, 130, 50)
     button2("Exit",500,100,70,50)
     pygame.display.update()
     if sorting:
@@ -98,6 +97,6 @@ while True:
             pygame.quit()
             sys.exit()
 
-selectionsort(bars)
+insertionsort(bars)
 print("SORTED")
 time.sleep(1)
