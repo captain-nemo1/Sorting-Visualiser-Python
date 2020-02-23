@@ -84,7 +84,7 @@ for i in range(num_bar):
     bars.append(height)
     
 
-#To keep working till user clicks Selection Button or Exits
+#To keep working till user clicks Bubble Button or Exits
 while True:
     button('Bubble', 300, 100, 110, 50)
     button2("Exit",500,100,70,50)
