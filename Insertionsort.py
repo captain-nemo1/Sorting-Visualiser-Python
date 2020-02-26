@@ -1,3 +1,4 @@
+#random values being generated are in negatives. SO even though it sorts in ascending order, the first graph looks tallest.
 import random
 import pygame
 import sys
@@ -32,6 +33,7 @@ def button(msg,x,y,w,h):
     else:
         pygame.draw.rect(screen, (200,127,168),(x,y,w,h), 0)
 
+
     text = font.render(msg, True, (0, 0, 0))        #text on button
     screen.blit(text, (x + 10, y + 10))
     
@@ -52,29 +54,44 @@ def button2(msg,x,y,w,h):
     text = font.render(msg, True, (0, 0, 0))
     screen.blit(text, (x + 10, y + 10))    
 
-
+def color(i,j,k):
+        x=(k*bar_width)+(k*space)+(600-(num_bar *bar_width+num_bar*space))
+        height=bars[k]
+        if bars[k] is bars[j]:
+            color = (255,127,80)
+        elif k is i:
+            return    
+        else:
+            color=blue  
+        drawbar(x,height,color)    
+    
 def insertionsort(arr):
     n=len(arr)
-    for i in range(n):
-        for j in range(0,i+1):
-            for k in range(num_bar): #to color those that are being checked for comparision
-                x=(k*bar_width)+(k*space)+(600-(num_bar *bar_width+num_bar*space))
-                height=bars[k]
-                if bars[k] is bars[i] or bars[k] is bars[j]:
-                    color = (255,127,80)
-                else:
-                    color=blue  
-                drawbar(x,height,color)     
+    for i in range(1,n):
+        key=arr[i]
+        j=i-1 
+        for k in range(num_bar):
+                color(i,j,k)
+        xi=(i*bar_width)+(i*space)+(600-(num_bar *bar_width+num_bar*space))
+        drawbar(xi,arr[i],(200,200,200))    
+        pygame.display.update()
+        time.sleep(.6)
+        while(j>=0 and key<arr[j]):
+            arr[j+1]=arr[j]
+            j-=1
+            for k in range(num_bar):
+                color(i,j,k)
+            xi=(i*bar_width)+(i*space)+(600-(num_bar *bar_width+num_bar*space))
+            drawbar(xi,arr[i],(200,200,200))    
             pygame.display.update()
-            time.sleep(.2)
-            if arr[j]>arr[i]:
-                 arr[j], arr[i]=arr[i], arr[j]
-            screen.fill((black))     
-            text = font.render("Sorting ", True, (blue))
-            screen.blit(text, (300, 100))
-            
-        
-                 
+            time.sleep(.5)
+        arr[j+1]=key  
+        screen.fill(black) 
+    for k in range(num_bar):
+        xi=(k*bar_width)+(k*space)+(600-(num_bar *bar_width+num_bar*space))
+        drawbar(xi,arr[k],(200,200,200))    
+        print(arr[k])
+        pygame.display.update()             
 
                 
 #Creating all values
